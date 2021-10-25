@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build-image: self-hosted
+  steps: 
+  - uses: action/checkout@v2
+
+  - name: build docker images
+    env:
+      REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+      REGISTY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+    run: |
+      docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+      make build push
+
+      
+
