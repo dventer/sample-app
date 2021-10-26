@@ -30,4 +30,4 @@ deploy:
 
 .PHONY: rollback
 rollback: 
-	@helm rollback ${APP}
+	@helm rollback sample-app

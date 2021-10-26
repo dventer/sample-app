@@ -13,4 +13,5 @@ jobs:
           fetch-depth: 2
 
       - name: Helm Rollback
-        run: helm rollback
+        shell: bash
+        run: make rollback
