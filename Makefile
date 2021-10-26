@@ -3,7 +3,6 @@ SHELL=/bin/bash -o pipefail -o errexit
 TAG ?= $(shell git rev-parse --short HEAD)
 REGISTRY=venter
 APP=sample-app
-DIFF= $()
 
 .PHONY: build
 build: ## Build image for a particular arch.
@@ -22,3 +21,7 @@ create-cluster:
 .PHONY: deploy
 deploy:
 	helm upgrade --install ${APP} charts/${APP}	--set image.repository=${REGISTRY}/${APP} --set image.tag=${TAG}
+
+.PHONY: rollback
+rollback: 
+	helm rollback ${APP} 

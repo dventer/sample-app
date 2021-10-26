@@ -1,0 +1,12 @@
+name: rollback
+
+on: workflow_dispatch
+
+jobs:
+    test:
+      runs-on: self-hosted
+      
+      steps:
+
+      - name: Helm Rollback
+        run: helm rollback
