@@ -30,4 +30,5 @@ deploy:
 
 .PHONY: rollback
 rollback: 
-	@helm rollback ${APP}
+	@echo "test ${APP}"
+	helm rollback ${APP}
