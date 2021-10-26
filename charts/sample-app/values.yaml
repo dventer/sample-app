@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: sample-flask
+  repository: venter/grpc-server
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0.0"
@@ -43,17 +43,18 @@ service:
 ingress:
   enabled: true
   annotations: 
-    kubernetes.io/ingress.class: nginx
+    #kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: sample-app.local
       paths:
         - path: "/"
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-
+  className: nginx
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
