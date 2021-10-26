@@ -40,7 +40,11 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: build & push docker images
-        run: make build push
+        shell: bash
+        run: |
+          ls -al
+          git rev-parse --short HEAD
+          make build push
 
       - name: deploy to cluster
         run: make deploy
