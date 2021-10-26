@@ -44,7 +44,8 @@ jobs:
       - name: build & push docker images
         shell: bash
         run: |
-          export TAG=$(git rev-parse --short "$GITHUB_SHA")
+          git rev-parse --short HEAD
+          ls -al
           make build push
 
       - name: deploy to cluster
