@@ -47,6 +47,8 @@ jobs:
       - name: build & push docker images
         shell: bash
         run: |
+          ls -al
+          git rev-parse --short HEAD
           make build push
 
       - name: deploy to cluster
