@@ -28,7 +28,7 @@ jobs:
 
 
     deploy: 
-      # if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/main' }}
       runs-on: self-hosted
 
       steps: 
@@ -55,8 +55,6 @@ jobs:
       - name: build & push docker images
         shell: bash
         run: |
-          git rev-parse --short HEAD
-          ls -al
           make build push
 
       - name: deploy to cluster
