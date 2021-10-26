@@ -2,8 +2,10 @@ name: CI
 
 on:
   push:
-    path-ignore:
-      - 'scripts/**'
+    paths:
+      - 'app/**'
+      - 'Dockerfile'
+      - 'charts/**'
 
     branches:
       - main
