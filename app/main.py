@@ -2,6 +2,7 @@ from flask import Flask
 import distro
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
 @app.route("/")
 def index():
     return distro.info()

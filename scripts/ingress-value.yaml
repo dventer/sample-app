@@ -1,0 +1,5 @@
+nodeSelector:
+  ingress-ready: 'true'
+
+service:
+  type: NodePort
