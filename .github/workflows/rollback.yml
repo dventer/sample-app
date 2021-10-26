@@ -3,10 +3,14 @@ name: rollback
 on: workflow_dispatch
 
 jobs:
-    test:
+    rollback:
       runs-on: self-hosted
       
       steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
       - name: Helm Rollback
         run: helm rollback

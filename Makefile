@@ -5,7 +5,7 @@ REGISTRY=venter
 APP=sample-app
 
 .PHONY: build
-build: ## Build image for a particular arch.
+build: ## Build docker image
 	echo "Building docker image ..."
 	@docker build -t ${REGISTRY}/${APP}:$(TAG) .
 
@@ -18,10 +18,16 @@ push:
 create-cluster:
 	@scripts/create-cluster.sh
 
+.PHONY: delete-cluster
+delete-cluster:
+	@kind delete cluster --name=$(shell kind get clusters)
+
 .PHONY: deploy
 deploy:
-	helm upgrade --install ${APP} charts/${APP}	--set image.repository=${REGISTRY}/${APP} --set image.tag=${TAG}
+	@helm upgrade --install ${APP} charts/${APP} \
+	--set image.repository=${REGISTRY}/${APP} \
+	--set image.tag=${TAG}
 
 .PHONY: rollback
 rollback: 
-	helm rollback ${APP} 
+	@helm rollback ${APP}
