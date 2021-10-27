@@ -1,11 +1,12 @@
 from flask import Flask
-import distro
+from datetime import date
 app = Flask(__name__)
-app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route("/")
 def index():
-    return distro.info()
+    start = '25/10/2021'
+    today = date.today()
+    return f'Xendit - Trial - Jefri Adventer - {start} - {today.strftime("%d/%m/%Y")}'
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
