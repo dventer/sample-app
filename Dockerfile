@@ -1,5 +1,5 @@
 FROM python:3.8.12-alpine3.14
-RUN apk add --update gcc libc-dev fortify-headers
+RUN apk add --update gcc libc-dev fortify-headers linux-headers
 RUN pip install --upgrade pip
 RUN adduser -D sample-app
 USER sample-app
