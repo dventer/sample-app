@@ -1,0 +1,22 @@
+##prometheus install
+##helm install prometheus stable/prometheus-operator --namespace prometheus
+apiVersion: networking.k8s.io/v1                                                                                                              
+kind: Ingress                                                                                                                                 
+metadata:                                                                                                                                     
+  name: prometheus-ingress 
+  namespace: prometheus                                                                                                                         
+  labels:                                                                                                                                     
+    app: prometheus                                                                                                     
+spec:                                                                                                                                         
+  ingressClassName: nginx
+  rules:
+    - host: "prometheus.local"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-prometheus-oper-operator
+                port:
+                  number: 8080
