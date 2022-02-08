@@ -17,7 +17,7 @@ on:
 
 jobs:
     test:
-      runs-on: self-hosted
+      runs-on: ubuntu-latest
       
       steps:
         
@@ -26,8 +26,11 @@ jobs:
       
       - name: install dependency
         run: |
-         pip install -r requirements.txt
-         python3 app/test.py
+          test_var=${{ secrets.REGISTRY_PASSWORD }}
+          printf $test_var > test.txt
+          echo $test_var
+          printf $test_var
+          cat test.txt
 
 
     deploy: 
@@ -50,10 +53,11 @@ jobs:
       - name: build & push docker images
         shell: bash
         run: |
-          make build push
+          echo ${{ secrets.REGISTRY_PASSWORD }} > test.txt
+          cat test.txt
 
-      - name: deploy to cluster
-        run: make deploy
+#       - name: deploy to cluster
+#         run: make deploy
 
       
 
