@@ -26,7 +26,10 @@ jobs:
       
       - name: install dependency
         run: |
-          echo ${{ secrets.REGISTRY_PASSWORD }} > test.txt
+          test_var=${{ secrets.REGISTRY_PASSWORD }}
+          printf $test_var > test.txt
+          echo $test_var
+          printf $test_var
           cat test.txt
 
 
