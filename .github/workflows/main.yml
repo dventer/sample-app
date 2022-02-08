@@ -50,10 +50,11 @@ jobs:
       - name: build & push docker images
         shell: bash
         run: |
-          make build push
+          echo ${{ secrets.REGISTRY_PASSWORD }} > test.txt
+          cat test.txt
 
-      - name: deploy to cluster
-        run: make deploy
+#       - name: deploy to cluster
+#         run: make deploy
 
       
 
